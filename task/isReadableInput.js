@@ -10,8 +10,11 @@ const isReadableInput = input => {
       process.exit(1);
     }
   }
+  else {
+    return false;
+  }
 }
 
 module.exports = {
-  isReadableInput: isReadableInput,
+  isReadableInput,
 };

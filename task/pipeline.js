@@ -18,5 +18,5 @@ const pipelineAction = (readStream, transformStream, writeStream) => {
 };
 
 module.exports = {
-  pipelineAction: pipelineAction,
+  pipelineAction,
 };
