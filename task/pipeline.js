@@ -8,6 +8,7 @@ const pipelineAction = (readStream, transformStream, writeStream) => {
     (error) => {
       if (error) {
         console.error('Pipeline failed')
+        process.exit(1);
       }
       else {
         console.log('Pipeline succeeded');

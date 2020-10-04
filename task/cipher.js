@@ -4,11 +4,11 @@ module.exports = (chunk, action, shift) => {
   const arrLowerCharCode = [];
   const arrUpperCharCode = [];
 
-  for (let i = 97; i < 123; i++) {
+  for (let i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++) {
     arrLowerCharCode.push(i);
   }
 
-  for (let i = 65; i < 91; i++) {
+  for (let i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++) {
     arrUpperCharCode.push(i);
   }
 
@@ -24,32 +24,32 @@ module.exports = (chunk, action, shift) => {
     const first = includedArray[0];
     const last = includedArray[includedArray.length - 1];
 
-    if (action === 'encode') {
+    if (action === 'encode' && includedArray) {
 
-      if (includedArray && letterCode + +shift < last) {
+      if (letterCode + +shift < last) {
         newDataCodes.push(letterCode + +shift);
       }
 
-      if (includedArray && letterCode + +shift > last) {
+      if (letterCode + +shift > last) {
         newDataCodes.push(letterCode + +shift - last + first - 1);
       }
 
-      if (includedArray && letterCode + +shift === last) {
+      if (letterCode + +shift === last) {
         newDataCodes.push(last);
       }
     }
 
-    if (action === 'decode') {
+    if (action === 'decode' && includedArray) {
 
-      if (includedArray && letterCode - shift > first) {
+      if (letterCode - shift > first) {
         newDataCodes.push(letterCode - shift);
       }
 
-      if (includedArray && letterCode - shift < first) {
+      if (letterCode - shift < first) {
         newDataCodes.push(letterCode - shift + last - first + 1);
       }
 
-      if (includedArray && letterCode - shift === first) {
+      if (letterCode - shift === first) {
         newDataCodes.push(first);
       }
     }

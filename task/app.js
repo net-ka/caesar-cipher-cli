@@ -6,7 +6,7 @@ const { pipelineAction } = require('./pipeline');
 const { isReadableInput } = require('./isReadableInput');
 const { isWritableOutput } = require('./isWritableOutput');
 const { transform } = require('./transform');
-const cipher = require('./cipher');
+const requiredOptionsValidation = require('./requiredOptionsValidation');
 
 program
   .storeOptionsAsProperties(false)
@@ -23,15 +23,7 @@ program
 
 const { action, shift, input, output } = program.opts();
 
-if (action !== 'encode' && action !== 'decode') {
-  console.error('Action option should be encode or decode');
-  process.exit(1);
-}
-
-if (isNaN(shift) || shift < 0 || shift > 27) {
-  console.error('Shift option should be a number from 0 to 26');
-  process.exit(1);
-}
+requiredOptionsValidation(action, shift);
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -44,11 +36,10 @@ const isOutput = isWritableOutput(output);
 if (!input) {
   console.log('You can write text for transform after each Enter press');
 
-  rl.on('line', (line) => {
+  rl.on('line', () => {
     if (!output) {
       console.log('Transformed text is:');
     }
-    // cipher(line, action, shift);
   });
 }
 

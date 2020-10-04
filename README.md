@@ -1,4 +1,4 @@
-## caesar-cipher-cli
+## cli-caesar-cipher
 
 Instructions for project check:
 1. To clone this repository write in terminal `git clone https://github.com/net-ka/cli-caesar-cipher.git`
@@ -19,3 +19,4 @@ Instructions for project check:
   * `node app.js -a decode -s 2 -i './input.txt' -o './output.txt'`
 9. To stop the program manually make cursor active in your terminal and press 'ctrl + c'
 10. Program encodes/decodes only latin letters, other characters remain the same
+11. File 'input.txt' already contains some text, you can use it for checking or add another one
