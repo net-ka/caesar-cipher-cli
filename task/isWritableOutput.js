@@ -13,5 +13,5 @@ const isWritableOutput = output => {
 }
 
 module.exports = {
-  isWritableOutput: isWritableOutput,
+  isWritableOutput,
 };
