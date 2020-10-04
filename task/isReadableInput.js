@@ -6,7 +6,7 @@ const isReadableInput = input => {
       fs.accessSync(input, fs.constants.R_OK);
       return true;
     } catch (err) {
-      console.log(`${input} is not readable or doesn't exist`);
+      console.error(`${input} is not readable or doesn't exist`);
       process.exit(1);
     }
   }

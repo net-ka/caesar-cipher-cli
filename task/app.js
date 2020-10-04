@@ -24,12 +24,12 @@ program
 const { action, shift, input, output } = program.opts();
 
 if (action !== 'encode' && action !== 'decode') {
-  console.log('Action should be encode or decode');
+  console.error('Action option should be encode or decode');
   process.exit(1);
 }
 
 if (isNaN(shift) || shift < 0 || shift > 27) {
-  console.log('Shift argument should be a number from 0 to 26');
+  console.error('Shift option should be a number from 0 to 26');
   process.exit(1);
 }
 
@@ -42,11 +42,13 @@ const isInput = isReadableInput(input);
 const isOutput = isWritableOutput(output);
 
 if (!input) {
-  console.log('Write text for transform:');
+  console.log('You can write text for transform after each Enter press');
 
   rl.on('line', (line) => {
-    console.log('Transformed text is:');
-    cipher(line, action, shift);
+    if (!output) {
+      console.log('Transformed text is:');
+    }
+    // cipher(line, action, shift);
   });
 }
 
@@ -61,5 +63,3 @@ const writeStream = isOutput
 const transformStream = transform(action, shift);
 
 pipelineAction(readStream, transformStream, writeStream);
-
-// console.log(`transformed text is: ${process.stdout}`);
