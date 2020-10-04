@@ -6,7 +6,7 @@ const isWritableOutput = output => {
       fs.accessSync(output, fs.constants.W_OK);
       return true;
     } catch (err) {
-      console.error(`Error: '${output}' is not writable`);
+      console.error(`Error: '${output}' is not writable or doesn't exist`);
       process.exit(1);
     }
   }
