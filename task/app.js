@@ -44,11 +44,11 @@ if (!input) {
 }
 
 const readStream = isInput
-  ? fs.createReadStream(path.join(__dirname, input))
+  ? fs.createReadStream(path.resolve(__dirname, input))
   : rl.input;
 
 const writeStream = isOutput
-  ? fs.createWriteStream(path.join(__dirname, output), { flags: "a+" })
+  ? fs.createWriteStream(path.resolve(__dirname, output), { flags: "a+" })
   : process.stdout;
 
 const transformStream = transform(action, shift);
